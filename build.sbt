@@ -7,6 +7,8 @@ name := "human-tester"
 
 version := "0.2"
 
+isSnapshot := true
+
 scalaVersion := "2.11.5"
 
 scalacOptions ++= Seq( "-deprecation", "-feature", "-language:postfixOps", "-language:implicitConversions", "-language:existentials" )

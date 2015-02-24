@@ -11,27 +11,32 @@ Here is a code snippet to show how to use it.
 	{
 		Tester.add( "default", "arithmetic", "What is the product of $a:pdigit, $b:pdigit and $c:pdigit?", "a < b < c, a*b*c < 50", "a*b*c" )
 		
-		for (_ <- 1 to 15)
+		for (_ <- 1 to 20)
 			println( Tester.test("default") )
 	}
 	
-The above code snippet starts by adding a new type of test to the list of possible questions.  Actually, this is a question that you wouldn't really want to have (it's not one of the built-in questions) because the answers can easily be three digits.  The snippet then displays 15 question/answer pairs.  For example, you may get something like
+The above code snippet starts by adding a new type of test to the list of possible questions.  Actually, this is a question that you wouldn't really want to have (it's not one of the built-in questions) because the answers can easily be three digits.  The snippet then displays 20 question/answer pairs.  For example, you may get something like
 
-	(Is 9 less than 6?,no)
-	(Does 8 come before 9?,yes)
-	(Does 1 come before 5?,no)
-	(What is 1 times 4?,4)
-	(What is 1 plus 4?,5)
-	(What is the sum of 5, 6 and 9?,20)
-	(Is 10 divisible by 2?,yes)
-	(What is 9 times 1?,9)
-	(What is 9 plus 5?,14)
-	(What number comes after 6?,7)
-	(What is 8 times 5?,40)
-	(What is the sum of 2, 5 and 6?,13)
-	(Is 12 divisible by 7?,no)
-	(What is 3 plus 4?,7)
-	(What is 6 times 8?,48)
+	(What is 3 times 9?,27)                                                                                                                                                                                                      
+	(What is the product of 1, 4 and 5?,20)                                                                                                                                                                                      
+	(Does 8 come after 7?,yes)                                                                                                                                                                                                   
+	(What number comes after 4?,5)                                                                                                                                                                                               
+	(What is the sum of 1, 5 and 6?,12)                                                                                                                                                                                          
+	(What is 14 divided by 7?,2)                                                                                                                                                                                                 
+	(What is 4 plus 3?,7)                                                                                                                                                                                                        
+	(What number comes after 3?,4)                                                                                                                                                                                               
+	(Is 7 less than 5?,no)                                                                                                                                                                                                       
+	(What is the product of 1, 2 and 7?,14)                                                                                                                                                                                      
+	(What is the sum of 1, 2 and 6?,9)                                                                                                                                                                                           
+	(Is 12 divisible by 7?,no)                                                                                                                                                                                                   
+	(Is 15 divisible by 5?,yes)                                                                                                                                                                                                  
+	(What is the product of 1, 2 and 4?,8)
+	(What is the sum of 3, 7 and 8?,18)
+	(What is 3 times 8?,24)
+	(What is 15 divided by 5?,3)
+	(Is 12 divisible by 2?,yes)
+	(What is 4 times 5?,20)
+	(What number comes before 9?,8)
 
 
 ## License

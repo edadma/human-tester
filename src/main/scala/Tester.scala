@@ -12,14 +12,15 @@ object Tester
 	spaces("default") = ArrayBuffer(
 		(ArithmeticTemplate, "What is $a:pdigit plus $b:pdigit?", "a != b", "a + b"),
 		(ArithmeticTemplate, "What is the sum of $a:pdigit, $b:pdigit and $c:pdigit?", "a < b < c", "a + b + c"),
-		(ArithmeticTemplate, "What is $a:pdigit times $b:pdigit?", "a != b", "a*b"),
+		(ArithmeticTemplate, "What is $a:pdigit times $b:pdigit?", "1 < a < b, a*b <= 30", "a*b"),
 		(ArithmeticTemplate, "What number comes before $a:pdigit?", null, "a - 1"),
 		(ArithmeticTemplate, "What number comes after $a:pdigit?", null, "a + 1"),
 		(ArithmeticTemplate, "Does $a:pdigit come after $b:pdigit?", "a > b", "if( a = b + 1, 'yes', 'no' )"),
 		(ArithmeticTemplate, "Does $a:pdigit come before $b:pdigit?", "a < b", "if( a = b - 1, 'yes', 'no' )"),
 		(ArithmeticTemplate, "Is $a:pdigit less than $b:pdigit?", "a != b", "if( a < b, 'yes', 'no' )"),
 		(ArithmeticTemplate, "Is $a:pdigit greater than $b:pdigit?", "a != b", "if( a > b, 'yes', 'no' )"),
-		(ArithmeticTemplate, "Is $a:scomp divisible by $b:sprime?", "a > b", "if( a mod b = 0, 'yes', 'no' )")
+		(ArithmeticTemplate, "Is $a:scomp divisible by $b:sprime?", "a > b", "if( a mod b = 0, 'yes', 'no' )"),
+		(ArithmeticTemplate, "What is $a:scomp divided by $b:sprime?", "a mod b = 0", "a/b")
 		)
 	
 	def test( space: String ) =

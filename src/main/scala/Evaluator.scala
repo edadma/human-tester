@@ -41,7 +41,7 @@ class Evaluator( vars: collection.Map[String, Any] ) extends RegexParsers
 	}
 
 	def comparison: Parser[Any] =
-		additive ~ rep1(("="|"!="|"<"|">"|"<="|">=") ~ additive) ^^ {
+		additive ~ rep1(("="|"!="|"<="|">="|"<"|">") ~ additive) ^^ {
 			case x ~ list =>
 				var v = x
 				

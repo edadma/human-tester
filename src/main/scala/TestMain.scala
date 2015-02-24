@@ -7,7 +7,7 @@ object TestMain extends App
 	// one in them
  	Tester.add( "default", "arithmetic", "What is the product of $a:pdigit, $b:pdigit and $c:pdigit?", "a < b < c, a*b*c < 50", "a*b*c" )
 	
-	for (_ <- 1 to 15)
+	for (_ <- 1 to 20)
 		println( Tester.test("default") )
 
 // 	val eval = new Evaluator( Map[String, Any]() )
