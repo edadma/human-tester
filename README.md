@@ -96,12 +96,12 @@ Use the following elements to use Human Tester in your Maven project:
 	<dependency>
 		<groupId>ca.hyperreal</groupId>
 		<artifactId>human-tester</artifactId>
-		<version>0.3</version>
+		<version>0.4</version>
 	</dependency>
 
 Add the following to your `build.sbt` file to use Human Tester in your SBT project:
 
 	resolvers += "Hyperreal Repository" at "http://hyperreal.ca/maven2"
 
-	libraryDependencies += "ca.hyperreal" %% "human-tester" % "0.3"
+	libraryDependencies += "ca.hyperreal" %% "human-tester" % "0.4"
 
