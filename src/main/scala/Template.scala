@@ -51,9 +51,12 @@ abstract class Template
 
 object ArithmeticTemplate extends Template
 {
-	types("pdigit") = 1 to 9
-	types("sprime") = (2 to 9) filter prime
-	types("scomp") = (4 to 15) filterNot prime
+	types("tint") = 1 to 9
+	types("tprime") = Vector( 2, 3, 5, 7 )//(2 to 9) filter prime
+	types("tcomp") = (4 to 15) filterNot prime
+	types("sint") = 1 to 30
+	types("sprime") = (2 to 29) filter prime
+	types("scomp") = (4 to 30) filterNot prime
 	
 	def prime( n: Int ) = n > 1 && !((2 to math.sqrt( n ).toInt) exists (n % _ == 0))
 		

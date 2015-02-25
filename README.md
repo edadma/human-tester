@@ -9,13 +9,13 @@ Here is a code snippet to show how to use it.
 	
 	object Main extends App
 	{
-		Tester.add( "default", "arithmetic", "What is the product of $a:pdigit, $b:pdigit and $c:pdigit?", "a < b < c, a*b*c < 50", "a*b*c" )
+		Tester.question( "default", "arithmetic", "What is the product of $a:tint, $b:tint and $c:tint?", "a < b < c, a*b*c < 50", "a*b*c" )
 		
 		for (_ <- 1 to 20)
 			println( Tester.test("default") )
 	}
 	
-The above code snippet starts by adding a new type of test to the list of possible questions.  Actually, this is a question that you wouldn't really want to have (it's not one of the built-in questions) because the answers can easily be three digits.  The snippet then displays 20 question/answer pairs.  For example, you may get something like
+The above code snippet starts by adding a new type of test to the list of possible questions.  This is just to show that new questions can be added.  You probably won't need to.  Actually, this is a question that you wouldn't really want to have (it's not one of the built-in questions) because the answers can easily be too large without the size limiting constraint `a*b*c < 50`, but with the constraint most of the questions will have a one as the first number.  The snippet then displays 20 question/answer pairs.  For example, you may get something like
 
 	(What is 3 times 9?,27)                                                                                                                                                                                                      
 	(What is the product of 1, 4 and 5?,20)                                                                                                                                                                                      
@@ -39,6 +39,16 @@ The above code snippet starts by adding a new type of test to the list of possib
 	(What number comes before 9?,8)
 
 
+## Question/Answer Templates
+
+The framework uses string templating to make it convenient to have it be able to generate a large number of appropriate question/answer pairs without having to individually add every particular question/answer pair.  We will use the above example code and output to discuss question/answer templates.  A question that the tester can ask has three components: the question itself, a list of constraints, and the answer to the question.  In the example above, a question
+
+
+## The Arithmetic Template
+
+The framework comes with one built-in test question template class, `ArithmeticTemplate`.
+
+
 ## License
 
 Human Tester is distributed under the MIT License, meaning that you are free to use it in your free or proprietary software.
@@ -56,12 +66,12 @@ Use the following elements to use Human Tester in your Maven project:
 	<dependency>
 		<groupId>ca.hyperreal</groupId>
 		<artifactId>human-tester</artifactId>
-		<version>0.2</version>
+		<version>0.3</version>
 	</dependency>
 
 Add the following to your `build.sbt` file to use Human Tester in your SBT project:
 
 	resolvers += "Hyperreal Repository" at "http://hyperreal.ca/maven2"
 
-	libraryDependencies += "ca.hyperreal" %% "human-tester" % "0.2"
+	libraryDependencies += "ca.hyperreal" %% "human-tester" % "0.3"
 
