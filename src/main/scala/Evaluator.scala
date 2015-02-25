@@ -1,5 +1,7 @@
 package ca.hyperreal.human_tester
 
+import math._
+
 
 object Evaluator
 {
@@ -50,7 +52,7 @@ object Evaluator
 					eval( yes )
 				else
 					eval( no )
-				
+			case OperationAST( "isqrt", a ) => sqrt( neval(a) ).toInt
 			case ConjunctionAST( conjuncts ) => conjuncts forall (apply( _, vars).asInstanceOf[Boolean] )
 		}
 	}

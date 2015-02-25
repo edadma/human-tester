@@ -5,6 +5,11 @@ import collection.mutable.HashMap
 import util.Random._
 
 
+object Template
+{
+	val default = new ArithmeticTemplate
+}
+
 abstract class Template
 {
 	protected val slot = """(\p{Alpha}+):(\p{Alpha}+)|\{(\p{Alpha}+):(\p{Alpha}+)\}"""r
@@ -49,7 +54,7 @@ abstract class Template
 	def generate( template: String, constraints: String, answer: String ): (String, String)
 }
 
-object ArithmeticTemplate extends Template
+class ArithmeticTemplate extends Template
 {
 	types("tint") = 1 to 9
 	types("tprime") = (2 to 9) filter prime

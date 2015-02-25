@@ -5,7 +5,7 @@ import LaikaKeys._
 
 name := "human-tester"
 
-version := "0.3"
+version := "0.4"
 
 isSnapshot := true
 
