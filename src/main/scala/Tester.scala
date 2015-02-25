@@ -10,20 +10,20 @@ object Tester
 	private val templates = HashMap[String, Template]( "arithmetic" -> ArithmeticTemplate )
 	
 	spaces("default") = ArrayBuffer(
-		(ArithmeticTemplate, "What is $a:tint plus $b:tint?", "a != b", "a + b"),
-		(ArithmeticTemplate, "What is the sum of $a:tint, $b:tint and $c:tint?", "a < b < c", "a + b + c"),
-		(ArithmeticTemplate, "What is $a:tint times $b:tint?", "1 < a < b, a*b <= 30", "a*b"),
-		(ArithmeticTemplate, "What number comes before $a:tint?", null, "a - 1"),
-		(ArithmeticTemplate, "What number comes after $a:tint?", null, "a + 1"),
-		(ArithmeticTemplate, "Does $a:tint come after $b:tint?", "a > b", "if( a = b + 1, 'yes', 'no' )"),
-		(ArithmeticTemplate, "Does $a:tint come before $b:tint?", "a < b", "if( a = b - 1, 'yes', 'no' )"),
-		(ArithmeticTemplate, "Is $a:tint less than $b:tint?", "a != b", "if( a < b, 'yes', 'no' )"),
-		(ArithmeticTemplate, "Is $a:tint greater than $b:tint?", "a != b", "if( a > b, 'yes', 'no' )"),
-		(ArithmeticTemplate, "Is $a:tcomp divisible by $b:tprime?", "a > b", "if( a rem b = 0, 'yes', 'no' )"),
-		(ArithmeticTemplate, "What is $a:tcomp divided by $b:tprime?", "a rem b = 0", "a/b"),
-		(ArithmeticTemplate, "What number is between $a:tint and $b:tint", "a = b - 2", "a + 1"),
-		(ArithmeticTemplate, "What number should come next: $a:sint, $b:sint, $c:sint, __?", "a = b - 3, b = c - 3", "c + 3"),
-		(ArithmeticTemplate, "What number should come next: $a:sint, $b:sint, $c:sint, __?", "a = b + 3, b = c + 3, c > 3", "c - 3")
+		(ArithmeticTemplate, "What is a:tint plus b:tint?", "a != b", "a + b"),
+		(ArithmeticTemplate, "What is the sum of a:tint, b:tint and c:tint?", "a < b < c", "a + b + c"),
+		(ArithmeticTemplate, "What is a:tint times b:tint?", "1 < a < b, a*b <= 30", "a*b"),
+		(ArithmeticTemplate, "What number comes before a:tint?", null, "a - 1"),
+		(ArithmeticTemplate, "What number comes after a:tint?", null, "a + 1"),
+		(ArithmeticTemplate, "Does a:tint come after b:tint?", "a > b", "if( a = b + 1, 'yes', 'no' )"),
+		(ArithmeticTemplate, "Does a:tint come before b:tint?", "a < b", "if( a = b - 1, 'yes', 'no' )"),
+		(ArithmeticTemplate, "Is a:tint less than b:tint?", "a != b", "if( a < b, 'yes', 'no' )"),
+		(ArithmeticTemplate, "Is a:tint greater than b:tint?", "a != b", "if( a > b, 'yes', 'no' )"),
+		(ArithmeticTemplate, "Is a:tcomp divisible by b:tprime?", "a > b", "if( a rem b = 0, 'yes', 'no' )"),
+		(ArithmeticTemplate, "What is a:tcomp divided by b:tprime?", "a rem b = 0", "a/b"),
+		(ArithmeticTemplate, "What number is between a:tint and b:tint", "a = b - 2", "a + 1"),
+		(ArithmeticTemplate, "What number should come next: a:sint, b:sint, c:sint, __?", "a = b - 3, b = c - 3", "c + 3"),
+		(ArithmeticTemplate, "What number should come next: a:sint, b:sint, c:sint, __?", "a = b + 3, b = c + 3, c > 3", "c - 3")
 		)
 	
 	def test( space: String ) =

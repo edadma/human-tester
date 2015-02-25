@@ -7,7 +7,7 @@ import util.Random._
 
 abstract class Template
 {
-	protected val slot = """\$(\p{Alpha}+):(\p{Alpha}+)|\$\{(\p{Alpha}+):(\p{Alpha}+)\}"""r
+	protected val slot = """(\p{Alpha}+):(\p{Alpha}+)|\{(\p{Alpha}+):(\p{Alpha}+)\}"""r
 	protected val types = new HashMap[String, IndexedSeq[Any]]
 	
 	def slots( template: String ) =
