@@ -43,6 +43,7 @@ The above code snippet starts by adding a new type of test to the list of possib
 
 The framework uses string templating to make it convenient to have it be able to generate a large number of appropriate question/answer pairs without having to individually add every particular question/answer pair.  We will use the above example code and output to discuss question/answer templates.  A question that the tester can ask has three components: the question itself, a list of constraints, and the answer to the question.  In the example above, a question
 
+Vector( 2, 3, 5, 7 )
 
 ## The Arithmetic Template
 

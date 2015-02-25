@@ -10,7 +10,5 @@ object TestMain extends App
 	for (_ <- 1 to 20)
 		println( Tester.test("default") )
 
-// 	val eval = new Evaluator( Map[String, Any]() )
-// 	
-// 	println( eval("'asdf' = 'asdf'") )
+//	println( Evaluator(Expression("1 < 2 < 3"), Map()) )
 }

@@ -52,7 +52,7 @@ abstract class Template
 object ArithmeticTemplate extends Template
 {
 	types("tint") = 1 to 9
-	types("tprime") = Vector( 2, 3, 5, 7 )//(2 to 9) filter prime
+	types("tprime") = (2 to 9) filter prime
 	types("tcomp") = (4 to 15) filterNot prime
 	types("sint") = 1 to 30
 	types("sprime") = (2 to 29) filter prime
@@ -62,8 +62,9 @@ object ArithmeticTemplate extends Template
 		
 	def generate( template: String, constraints: String, answer: String ) =
 	{
+	val constraintsAST: AST = if (constraints eq null) null else Expression( constraints )
+	val answerAST = Expression( answer )
 	val m = new HashMap[String, Any]
-	val eval = new Evaluator( m )
 	val vars =
 		for ((n, s) <- slots( template ))
 			yield
@@ -78,7 +79,7 @@ object ArithmeticTemplate extends Template
 			for (v <- vars)
 				m(v.name) = v.set(v.index)
 				
-			if (constraints != null && !eval( constraints ).asInstanceOf[Boolean])
+			if (constraints != null && !Evaluator( constraintsAST, m ).asInstanceOf[Boolean])
 			{
 			var i = vars.length - 1
 			
@@ -96,24 +97,8 @@ object ArithmeticTemplate extends Template
 		
 		satisfy
 		
-		replace( template, m ) -> eval( answer ).toString
+		replace( template, m ) -> Evaluator( answerAST, m ).toString
 	}
 	
 	case class Var( name: String, set: IndexedSeq[Any], choice: Int, var index: Int )
 }
-
-// 		for ((n, t) <- slots( template ))
-// 		{
-// 			t match
-// 			{
-// 				case "pdigit" =>
-// 					var v = 0
-// 					
-// 					do
-// 					{
-// 						v = nextInt( 9 ) + 1
-// 					} while (m.values.exists( _ == v ))
-// 					
-// 					m(n) = v
-// 			}
-// 		}

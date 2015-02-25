@@ -1,95 +1,57 @@
 package ca.hyperreal.human_tester
 
-import util.parsing.combinator.RegexParsers
 
-
-class Evaluator( vars: collection.Map[String, Any] ) extends RegexParsers
+object Evaluator
 {
-	def string: Parser[Any] = """'[^']*'""".r ^^ {s => s.substring( 1, s.length - 1 )}
-	
-	def number: Parser[Any] = """\d+""".r ^^ {_.toInt}
-	
-	def variable: Parser[Any] = """\p{Alpha}+""".r ^^ {vars(_)}
-	
-	def function: Parser[Any] = """\p{Alpha}+""".r ~ ("(" ~> repsep(comparison, ",") <~ ")") ^^ {
-		case "if" ~ List(cond: Boolean, yes, no) =>
-			if (cond)
-				yes
-			else
-				no
-		}
-	
-	def primary: Parser[Any] = function | string | number | variable | "(" ~> expr <~ ")"
-	
-	def multiplicative: Parser[Any] = primary ~ rep(("*"|"/"|"mod") ~ primary) ^^ {
-		case number ~ list => (number /: list) {
-			case (x, "*" ~ y) => x.asInstanceOf[Int] * y.asInstanceOf[Int]
-			case (x, "/" ~ y) => x.asInstanceOf[Int] / y.asInstanceOf[Int]
-			case (x, "mod" ~ y) => x.asInstanceOf[Int] % y.asInstanceOf[Int]
-		}
-	}
-	
-	def additive: Parser[Any] = multiplicative ~ rep(("+"|"-") ~ multiplicative) ^^ {
-		case number ~ list => (number /: list) {
-			case (x, "+" ~ y) =>
+	def apply( expr: AST, vars: collection.Map[String, Any] ): Any =
+	{
+		def neval( e: AST ) = apply( e, vars ).asInstanceOf[Int]
+
+		def beval( e: AST ) = apply( e, vars ).asInstanceOf[Boolean]
+
+		def eval( e: AST ) = apply( e, vars )
+		
+		expr match
+		{
+			case StringAST( s ) => s
+			case NumberAST( n ) => n
+			case VariableAST( v ) => vars( v )
+			case OperationAST( "+", a, b ) =>
+				val x = eval( a )
+				val y = eval( b )
 				if (x.isInstanceOf[String] || y.isInstanceOf[String])
 					x.toString + y.toString
 				else
 					x.asInstanceOf[Int] + y.asInstanceOf[Int]
-			case (x, "-" ~ y) => x.asInstanceOf[Int] - y.asInstanceOf[Int]
+			case OperationAST( "-", a, b ) => neval( a ) - neval( b )
+			case OperationAST( "*", a, b ) => neval( a ) * neval( b )
+			case OperationAST( "/", a, b ) => neval( a ) / neval( b )
+			case OperationAST( "rem", a, b ) => neval( a ) % neval( b )
+			case OperationAST( "=", a, b ) => eval( a ) == eval( b )
+			case OperationAST( "!=", a, b ) => eval( a ) != eval( b )
+			case OperationAST( c@("<"|">"|"<="|">="), a, b ) =>
+				val l = eval( a )
+				val r = eval( b )
+				val comp =
+					if (l.isInstanceOf[String] && r.isInstanceOf[String])
+						l.asInstanceOf[String].compare( r.asInstanceOf[String] )
+					else
+						l.asInstanceOf[Int].compare( r.asInstanceOf[Int] )
+						
+					c match
+					{
+						case "<" => comp < 0
+						case ">" => comp > 0
+						case "<=" => comp <= 0
+						case ">=" => comp >= 0
+					}
+			case OperationAST( "if", cond, yes, no ) =>
+				if (beval( cond ))
+					eval( yes )
+				else
+					eval( no )
+				
+			case ConjunctionAST( conjuncts ) => conjuncts forall (apply( _, vars).asInstanceOf[Boolean] )
 		}
 	}
-
-	def comparison: Parser[Any] =
-		additive ~ rep1(("="|"!="|"<="|">="|"<"|">") ~ additive) ^^ {
-			case x ~ list =>
-				var v = x
-				
-				list forall {
-					case c ~ b =>
-						val a = v
-						
-							v = b
-							
-							(c, a, b) match
-							{
-								case ("=", _, _) => a == b
-								case ("!=", _, _) => a != b
-								case ("<", l: Int, r: Int) => l < r
-								case (">", l: Int, r: Int) => l > r
-								case ("<=", l: Int, r: Int) => l <= r
-								case (">=", l: Int, r: Int) => l >= r
-								case ("<", l: String, r: String) => l < r
-								case (">", l: String, r: String) => l > r
-								case ("<=", l: String, r: String) => l <= r
-								case (">=", l: String, r: String) => l >= r
-							}
-				}
-			} |
-		additive
-
-//	def conjunction: Parser[Any] = 
-
-	def expr: Parser[Any] =
-		comparison ~ rep("," ~> comparison) ^^ {
-			case (x: Boolean) ~ (list: List[Boolean]) =>
-				def conj( l: List[Boolean] ): Boolean =
-					if (l isEmpty)
-						true
-					else if (l.head)
-						conj( l.tail )
-					else
-						false
-						
-				conj( x +: list )
-			case x ~ Nil =>
-				x
-			}
-		
-	def apply( input: String ) =
-		parseAll( expr, input ) match
-		{
-			case Success( result, _ ) => result
-			case NoSuccess( msg, _ ) => sys.error( msg )
-		}
 }
