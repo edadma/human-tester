@@ -21,7 +21,8 @@ object Tester
 		(ArithmeticTemplate, "Is a:tint greater than b:tint?", "a != b", "if( a > b, 'yes', 'no' )"),
 		(ArithmeticTemplate, "Is a:tcomp divisible by b:tprime?", "a > b", "if( a rem b = 0, 'yes', 'no' )"),
 		(ArithmeticTemplate, "What is a:tcomp divided by b:tprime?", "a rem b = 0", "a/b"),
-		(ArithmeticTemplate, "What number is between a:tint and b:tint", "a = b - 2", "a + 1"),
+		(ArithmeticTemplate, "What number is between a:tint and b:tint?", "a = b - 2", "a + 1"),
+		(ArithmeticTemplate, "Is m:tint between a:tint and b:tint?", "a = b - 2", "if( m = a + 1, 'yes', 'no' )"),
 		(ArithmeticTemplate, "What number should come next: a:sint, b:sint, c:sint, __?", "a = b - 3, b = c - 3", "c + 3"),
 		(ArithmeticTemplate, "What number should come next: a:sint, b:sint, c:sint, __?", "a = b + 3, b = c + 3, c > 3", "c - 3")
 		)

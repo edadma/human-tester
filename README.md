@@ -9,7 +9,7 @@ Here is a code snippet to show how to use it.
 	
 	object Main extends App
 	{
-		Tester.question( "default", "arithmetic", "What is the product of $a:tint, $b:tint and $c:tint?", "a < b < c, a*b*c < 50", "a*b*c" )
+		Tester.question( "default", "arithmetic", "What is the product of a:tint, b:tint and c:tint?", "a < b < c, a*b*c < 50", "a*b*c" )
 		
 		for (_ <- 1 to 20)
 			println( Tester.test("default") )
@@ -41,13 +41,9 @@ The above code snippet starts by adding a new type of test to the list of possib
 
 ## Question/Answer Templates
 
-The framework uses string templating to make it convenient to have it be able to generate a large number of appropriate question/answer pairs without having to individually add every particular question/answer pair.  We will use the above example code and output to discuss question/answer templates.  A question that the tester can ask has three components: the question itself, a list of constraints, and the answer to the question.
+The framework uses string templating to make it convenient to have it be able to generate a large number of appropriate question/answer pairs without having to individually add every particular question/answer pair.  We will use the above example code and output to discuss question/answer templates.  A question that the tester can ask has three components: the question itself, a list of constraints (boolean expressions), and the answer to the question.
 
-In the example above, a question is added where the question itself is `What is the product of $a:tint, $b:tint and $c:tint?`, the constraints to be satisfied are `a < b < c, a*b*c < 50`, and the answer is `a*b*c`.
-
-Vector( 2, 3, 5, 7 )
-
-## The Arithmetic Template
+In the example above, a question is added where the question itself is `What is the product of a:tint, b:tint and c:tint?`, the constraints to be satisfied are `a < b < c, a*b*c < 50`, and the answer is `a*b*c`.  In the question, there are "slots" for randomly generated variables.  Each slot is a pair of the form `<name>:<set>` where `name` is the name of the variable and `set` is the name of a set of possible choices for that slot.  In this example, `tint` means "tiny integer" which is an integer from 1 to 9, inclusive.  Next, we have the constraints which say that the three variables should be in ascending order and their product should be less than 50.  And finally, the answer is the product of the three variables.
 
 The framework comes with one built-in test question template class, `ArithmeticTemplate`.
 
