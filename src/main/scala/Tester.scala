@@ -22,10 +22,10 @@ object Tester
 		(Template.default, "Is a:tcomp divisible by b:tprime?", "a > b", "if( a rem b = 0, 'yes', 'no' )"),
 		(Template.default, "What is a:tcomp divided by b:tprime?", "a rem b = 0", "a/b"),
 		(Template.default, "What number is between a:tint and b:tint?", "a = b - 2", "a + 1"),
-		(Template.default, "Is m:tint between a:tint and b:tint?", "a = b - 2", "if( m = a + 1, 'yes', 'no' )"),
-		(Template.default, "What number should come next: a:sint, b:sint, c:sint, __?", "a = b - 3, b = c - 3", "c + 3"),
-		(Template.default, "What number should come next: a:sint, b:sint, c:sint, __?", "a = b + 3, b = c + 3, c > 3", "c - 3"),
-		(Template.default, "Is a:sint a perfect square number?", null, "if( isqrt(a)*isqrt(a) = a, 'yes', 'no' )")
+		(Template.default, "Is m:tint between a:tint and b:tint?", "a = b - 2", "if( m = a + 1, 'yes', 'no' )")
+// 		(Template.default, "What number should come next: a:sint, b:sint, c:sint, __?", "a = b - 3, b = c - 3", "c + 3"),
+// 		(Template.default, "What number should come next: a:sint, b:sint, c:sint, __?", "a = b + 3, b = c + 3, c > 3", "c - 3"),
+//		(Template.default, "Is a:sint a perfect square number?", null, "if( isqrt(a)*isqrt(a) = a, 'yes', 'no' )")
 		)
 	
 	def test( space: String ) =
