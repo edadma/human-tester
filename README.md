@@ -90,7 +90,7 @@ Use the following elements to use Human Tester in your Maven project:
 
 	<repository>
 		<id>hyperreal</id>
-		<url>http://hyperreal.ca/maven2</url>
+		<url>https://dl.bintray.com/edadma/maven</url>
 	</repository>
 
 	<dependency>
@@ -101,7 +101,7 @@ Use the following elements to use Human Tester in your Maven project:
 
 Add the following to your `build.sbt` file to use Human Tester in your SBT project:
 
-	resolvers += "Hyperreal Repository" at "http://hyperreal.ca/maven2"
+	resolvers += "Hyperreal Repository" at "https://dl.bintray.com/edadma/maven"
 
 	libraryDependencies += "ca.hyperreal" %% "human-tester" % "0.5"
 

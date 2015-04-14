@@ -1,7 +1,5 @@
 import AssemblyKeys._
 
-import LaikaKeys._
-
 
 name := "human-tester"
 
@@ -9,7 +7,7 @@ version := "0.5"
 
 isSnapshot := true
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.6"
 
 scalacOptions ++= Seq( "-deprecation", "-feature", "-language:postfixOps", "-language:implicitConversions", "-language:existentials" )
 
@@ -19,7 +17,7 @@ organization := "ca.hyperreal"
 
 resolvers += "Typesafe Repository" at "http://repo.typesafe.com/typesafe/releases/"
 
-resolvers += "Hyperreal Repository" at "http://hyperreal.ca/maven2"
+resolvers += "Hyperreal Repository" at "https://dl.bintray.com/edadma/maven"
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.1.3" % "test"
 
@@ -42,14 +40,12 @@ mainClass in assembly := Some( "ca.hyperreal.myproject.Main" )
 jarName in assembly := name.value + "-" + version.value + ".jar"
 
 
-LaikaPlugin.defaults
-
-templateDirectives in Laika += LaikaExtension.bootstrapToc
+seq(bintraySettings:_*)
 
 
 publishMavenStyle := true
 
-publishTo := Some( Resolver.sftp( "private", "hyperreal.ca", "/var/www/hyperreal.ca/maven2" ) )
+//publishTo := Some( Resolver.sftp( "private", "hyperreal.ca", "/var/www/hyperreal.ca/maven2" ) )
 
 //{
 //  val nexus = "https://oss.sonatype.org/"
